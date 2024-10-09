@@ -27,7 +27,6 @@ class DecaDdr3Phy(Module):
         cl_sys_latency  = get_sys_latency(nphases, cl)
         cwl_sys_latency = get_sys_latency(nphases, cwl)
 
-        self.ddr3_hw = ddr3
         rdphase = get_sys_phase(nphases, cl_sys_latency, cl)
         wrphase = get_sys_phase(nphases, cwl_sys_latency, cwl)
         self.settings = PhySettings(
@@ -48,4 +47,10 @@ class DecaDdr3Phy(Module):
             delays        = 8,
         )
         self.dfi = dfi = Interface(addressbits, bankbits, nranks, 4*databits, nphases)
+        dram = Instance(ddr3.ddr(),
+            o_DDR3_RESET_n = pads.reset_n,
+            o_DDR3_CK_p = pads.clk_p,
+            o_DDR3_CK_n = pads.clk_n,
+        )
+        self.ddr3_hw = dram
         print("Init ddr3 for deca")
