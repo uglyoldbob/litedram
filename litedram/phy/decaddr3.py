@@ -6,7 +6,7 @@ from litedram.common import *
 from litedram.phy.dfi import *
 
 class DecaDdr3Phy(Module):
-    def __init__(self, pads,
+    def __init__(self, core, pads,
             ddr3,
             sys_clk_freq = 50e6,
             cl           = None,
@@ -49,14 +49,12 @@ class DecaDdr3Phy(Module):
         self.dfi = dfi = Interface(addressbits, bankbits, nranks, 4*databits, nphases)
         groot = Signal()
         groot2 = Signal()
-        self.comb += pads.clk_n.eq(1)
+        core.comb += pads.clk_n.eq(1)
         dram = Instance(ddr3.ddr(),
             o_DDR3_RESET_n = groot,
             o_DDR3_CK_p = pads.clk_p,
             o_DDR3_CK_n = groot2,
         )
-        self.comb += pads.reset_n.eq(groot)
-        self.comb += pads.clk_n.eq(groot2)
-        self.specials += [dram]
-        self.submodules += dram
+        core.comb += pads.reset_n.eq(groot)
+        core.comb += pads.clk_n.eq(groot2)
         print("Init ddr3 for deca")
