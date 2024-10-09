@@ -47,10 +47,12 @@ class DecaDdr3Phy(Module):
             delays        = 8,
         )
         self.dfi = dfi = Interface(addressbits, bankbits, nranks, 4*databits, nphases)
+        i_am_groot = Signal()
         dram = Instance(ddr3.ddr(),
             o_DDR3_RESET_n = pads.reset_n,
             o_DDR3_CK_p = pads.clk_p,
             o_DDR3_CK_n = pads.clk_n,
+            o_DDR3_CKE = i_am_groot,
         )
         self.specials += dram
         print("Init ddr3 for deca")
