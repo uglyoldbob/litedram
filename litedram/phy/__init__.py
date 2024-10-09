@@ -8,6 +8,8 @@ from litedram.phy.ecp5ddrphy import ECP5DDRPHY, ECP5DDRPHYInit
 from litedram.phy.gw2ddrphy import GW2DDRPHY
 from litedram.phy.gw5ddrphy import GW5DDRPHY
 
+from litedram.phy.decaddr3 import DecaDdr3Phy
+
 # backward compatibility (remove when no longer needed)
 from litedram.phy import s7ddrphy as a7ddrphy
 from litedram.phy import s7ddrphy as k7ddrphy
