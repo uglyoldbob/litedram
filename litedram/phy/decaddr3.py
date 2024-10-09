@@ -48,7 +48,7 @@ class DecaDdr3Phy(Module):
         )
         self.dfi = dfi = Interface(addressbits, bankbits, nranks, 4*databits, nphases)
         i_am_groot = Signal()
-        self.comb += [i_am_groot.eq(1)]
+        i_am_groot.eq(pads.ras_n)
         dram = Instance(ddr3.ddr(),
             o_DDR3_RESET_n = pads.reset_n,
             o_DDR3_CK_p = pads.clk_p,
