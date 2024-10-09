@@ -27,7 +27,7 @@ class DecaDdr3Phy(Module):
         cl_sys_latency  = get_sys_latency(nphases, cl)
         cwl_sys_latency = get_sys_latency(nphases, cwl)
 
-        self.ddr3 = ddr3
+        self.ddr3_hw = ddr3
         rdphase = get_sys_phase(nphases, cl_sys_latency, cl)
         wrphase = get_sys_phase(nphases, cwl_sys_latency, cwl)
         self.settings = PhySettings(
