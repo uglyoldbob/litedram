@@ -52,5 +52,5 @@ class DecaDdr3Phy(Module):
             o_DDR3_CK_p = pads.clk_p,
             o_DDR3_CK_n = pads.clk_n,
         )
-        self.ddr3_hw = dram
+        self.specials += dram
         print("Init ddr3 for deca")
